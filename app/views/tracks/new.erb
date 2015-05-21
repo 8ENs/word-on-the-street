@@ -1,0 +1,38 @@
+<h1>List new song</h1>
+<% if @track.errors.any? %>
+  <div>
+    <strong>Some issues with your track, please fix them:</strong>
+    <ul>
+      <% @track.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/tracks">
+  <div>
+    <label>Song Title:</label>
+    <input type="text" name="song" value="<%= @track.song%>">
+  </div>
+  <div>
+    <label>Album:</label>
+    <input type="text" name="album" value="<%= @track.album %>">
+  </div>
+  <div>
+    <label>Artist:</label>
+    <input type="text" name="artist" value="<%= @track.artist %>">
+  </div>
+  <div>
+    <label>Video (url):</label>
+    <input type="text" name="url" value="<%= @track.url %>">
+    <span>(optional)</span>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+<hr/>
+<a href="/tracks">Back to all Songs</a>

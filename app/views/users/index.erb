@@ -1,0 +1,9 @@
+<% @users.each do |user_row| %>
+  <div class="user">
+    <h3><a href="/users/<%= user_row.id %>"><%= user_row.name %></a> <small>(<%= user_row.email %>)</small>
+    </h3>
+  </div>
+<% end %>
+
+<hr/>
+<a href="/">Back to MAIN...</a>

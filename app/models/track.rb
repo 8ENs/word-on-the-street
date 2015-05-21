@@ -1,0 +1,14 @@
+class Track < ActiveRecord::Base
+  belongs_to :user
+  has_many :votes
+  
+  validates :song, :album, :artist, presence: true
+  validate  :legit_url
+
+  def legit_url
+    # don't throw an error unless it's a valid url (regex) OR the url was empty
+    unless /^(https?:\/\/[a-zA-Z|\d]{2,}\.[a-zA-Z|\d|\.]{2,})/.match(url) || url == ""
+      errors.add(:legit_url, "--- your URL input was not legit! (please try again and include 'http://')")
+    end
+  end
+end

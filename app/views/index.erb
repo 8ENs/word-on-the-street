@@ -1,0 +1,14 @@
+<h1>Music Wall</h1>
+
+<% if session[:id] %>
+  <p>Welcome <%= "#{session[:name]} [id: #{session[:id]}]" %>
+    <a href="/logout">(logout)</a>
+  </p>
+<% else %>
+  <p>Hey stranger...you should either <a href="/login">login</a> or <a href="/users/register">register</a></p>
+<% end %>
+
+<hr/>
+<p><a href="/tracks">View list of Songs...</a></p>
+
+<p><a href="/users">View list of Users...</a></p>
