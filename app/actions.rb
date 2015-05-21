@@ -81,51 +81,49 @@ end
 # <% end %>
 
 
-get '/tracks' do
-  @tracks = Track.order(likes: :desc)
-  @votes = Vote.where(user_id: session[:id])
-  erb :'tracks/index'
+get '/pins' do
+  @pins = Pin.all
+  erb :'pins/index'
 end
 
-get '/tracks/new' do
-  @track = Track.new
-  erb :'tracks/new'
+get '/pins/new' do
+  @pin = Pin.new
+  erb :'pins/new'
 end
 
-get '/tracks/:id' do
-  @track = Track.find(params[:id])
-  erb :'tracks/show'
+get '/pins/:id' do
+  @pin = Pin.find(params[:id])
+  erb :'pins/show'
 end
 
-post '/tracks' do
-  @track = Track.new(
-    song:   params[:song],
-    album:  params[:album],
-    artist:   params[:artist],
+post '/pins' do
+  @pin = Pin.new(
+    message:   params[:message],
+    location:  params[:location],
+    recipient:   params[:recipient],
     url:   params[:url]
   )
-  @track.user_id = session[:id]
-  if @track.save
-    redirect '/tracks'
+  @pin.user_id = session[:id]
+  if @pin.save
+    redirect '/pins'
   else
-    erb :'tracks/new'
+    erb :'pins/new'
   end
 end
 
-post '/tracks/upvote' do
-  Vote.create(
-    user_id: session[:id],
-    track_id: params[:trackid],
-    vote: 1
-  )
-  t = Track.find(params[:trackid])
-  t.likes += 1
-  t.save
+# post '/pins/upvote' do
+#   Vote.create(
+#     user_id: session[:id],
+#     pin_id: params[:pinid],
+#     vote: 1
+#   )
+#   t = pin.find(params[:pinid])
+#   t.save
 
-  redirect '/tracks' # :back
-  # if @track.save
-  #   redirect '/tracks'
-  # else
-  #   erb :'tracks/new'
-  # end
-end
+#   redirect '/pins' # :back
+#   # if @pin.save
+#   #   redirect '/pins'
+#   # else
+#   #   erb :'pins/new'
+#   # end
+# end

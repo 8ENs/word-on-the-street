@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :tracks
-  has_many :votes
+  has_many :pins
 
   validates :name, :email, :password, presence: true
   validates :email, uniqueness: true,

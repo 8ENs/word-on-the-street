@@ -1,8 +1,7 @@
-class Track < ActiveRecord::Base
+class Pin < ActiveRecord::Base
   belongs_to :user
-  has_many :votes
   
-  validates :song, :album, :artist, presence: true
+  validates :message, :location, :recipient, presence: true
   validate  :legit_url
 
   def legit_url

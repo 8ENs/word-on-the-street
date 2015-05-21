@@ -10,38 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520022050) do
+ActiveRecord::Schema.define(version: 20150521064338) do
 
-  create_table "tracks", force: true do |t|
-    t.string   "song"
-    t.string   "album"
-    t.string   "artist"
+  create_table "pins", force: true do |t|
+    t.integer  "user_id"
+    t.string   "message"
+    t.string   "location"
+    t.string   "recipient",  default: "Public"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url"
-    t.integer  "user_id"
-    t.integer  "likes",      default: 0
   end
 
-  add_index "tracks", ["user_id"], name: "index_tracks_on_user_id"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "password"
-  end
-
-  create_table "votes", force: true do |t|
-    t.integer  "track_id"
-    t.integer  "user_id"
-    t.integer  "vote",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "votes", ["track_id"], name: "index_votes_on_track_id"
-  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

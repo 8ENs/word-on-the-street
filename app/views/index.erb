@@ -1,7 +1,7 @@
-<h1>Music Wall</h1>
+<h1>Word on the Street</h1>
 
 <% if session[:id] %>
-  <p>Welcome <%= "#{session[:name]} [id: #{session[:id]}]" %>
+  <p>Welcome <a href="/users/<%= session[:id] %>"><%= session[:name] %></a>
     <a href="/logout">(logout)</a>
   </p>
 <% else %>
@@ -9,6 +9,6 @@
 <% end %>
 
 <hr/>
-<p><a href="/tracks">View list of Songs...</a></p>
+<p><a href="/pins">View list of PINS...</a></p>
 
-<p><a href="/users">View list of Users...</a></p>
+<p><a href="/users">View list of USERS...</a></p>
