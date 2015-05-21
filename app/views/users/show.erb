@@ -17,7 +17,7 @@
 <p>
   PINS received:
   <ul>
-  <% Pin.where(recipient: User.find(@user.id).name).each do |pin| %>
+  <% Pin.where(recipient: get_current_user.name).each do |pin| %>
     <li><a href="/pins/<%= pin.id %>">@:<%= pin.location %> FROM:<%= pin.user.name %> on:<%= pin.created_at.strftime("%h %d (%r)") %></a></li>
   <% end %>
   </ul>

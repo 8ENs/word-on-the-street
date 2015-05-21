@@ -1,7 +1,7 @@
 <h1>Word on the Street</h1>
 
-<% if session[:id] %>
-  <p>Welcome <a href="/users/<%= session[:id] %>"><%= session[:name] %></a>
+<% if user_logged_in? %>
+  <p>Welcome <a href="/users/<%= session[:id] %>"><%= get_current_user.name %></a>
     <a href="/logout">(logout)</a>
   </p>
 <% else %>
